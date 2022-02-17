@@ -1,0 +1,14 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+  <div class="container">
+    <h1>These are all your movie lists!</h1>
+    <p>Make watch-lists easy</p>
+    <%= link_to 'Make new List', new_list_path, class: "btn btn-ghost" %>
+  </div>
+</div>
+<div class="lists-container">
+  <% @lists.each do |list|  %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+    <%= link_to list.name, list_path(list) %>
+    </div>
+  <% end %>
+</div>
