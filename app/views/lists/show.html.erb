@@ -1,3 +1,9 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @list.photo.key %>');">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+    <%= link_to 'Add movies', new_list_bookmark_path(@list), class: "btn btn-outline-light" %>
+  </div>
+</div>
 <div class="list-container">
   <h1><%= @list.name %></h1>
   <%= link_to 'Add movies', new_list_bookmark_path(@list) %>
@@ -9,10 +15,3 @@
     <% end %>
   </ul>
 </div>
-
-
-    <%# <% @movies.each do |movie| %>
-      <%# <li><%= movie.title %>
-      <%# <%= link_to "Delete", bookmark_path(@bookmarks.find_by(movie_id: movie.id)), method: :delete, data: { confirm: "Are you sure?" } %>
-      <%# </li>  %>
-    <%# <% end %>

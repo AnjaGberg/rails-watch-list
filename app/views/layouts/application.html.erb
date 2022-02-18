@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <nav class="navbar fixed-top bg-dark">
+      <form class="container-fluid justify-content-end">
+      <%= link_to 'My Lists', lists_path, class: "btn btn-outline-light"  %>
+      </form>
+    </nav>
     <%= yield %>
   </body>
 </html>
