@@ -2,9 +2,9 @@
   <h1><%= @list.name %></h1>
   <%= link_to 'Add movies', new_list_bookmark_path(@list) %>
   <ul>
-    <% @list.movies.each do |movie| %>
-    <li> <%= movie.title %>
-      <%= link_to "Delete", bookmark_path(@bookmarks.find_by(movie_id: movie.id)), method: :delete, data: { confirm: "Are you sure?" }  %>
+    <% @list.bookmarks.each do |bookmark| %>
+    <li> <%= bookmark.movie.title %>
+      <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }  %>
     </li>
     <% end %>
   </ul>
@@ -14,5 +14,5 @@
     <%# <% @movies.each do |movie| %>
       <%# <li><%= movie.title %>
       <%# <%= link_to "Delete", bookmark_path(@bookmarks.find_by(movie_id: movie.id)), method: :delete, data: { confirm: "Are you sure?" } %>
-      <%# </li> %>
+      <%# </li>  %>
     <%# <% end %>

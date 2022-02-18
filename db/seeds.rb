@@ -1,3 +1,13 @@
-Movie.create(title: "Knives Out", overview: "When renowned crime novelist Harlan Thrombey is found dead at his estate just after his 85th birthday, the inquisitive and debonair Detective Benoit Blanc is mysteriously enlisted to investigate. From Harlan's dysfunctional family to his devoted staff, Blanc sifts through a web of red herrings and self-serving lies to uncover the truth behind Harlan's untimely death.", poster_url: "https://www.themoviedb.org/t/p/w500/pThyQovXQrw2m0s9x82twj48Jq4.jpg", rating: 8.7)
+require 'open-uri'
 
-puts "movie created"
+url = "http://tmdb.lewagon.com/movie/top_rated"
+movies_serialized = URI.open(url).read
+movies = JSON.parse(movies_serialized)
+movies["results"].each do |movie|
+  image = "https://image.tmdb.org/t/p/w500#{movie['poster_path']}"
+  Movie.create!(title: movie["title"], overview: movie["overview"], poster_url: image, rating: movie["vote_average"])
+  puts "movie created"
+end
+
+
+puts "all movies created"
