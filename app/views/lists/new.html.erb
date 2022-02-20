@@ -1,7 +1,14 @@
-<div class="form">
-  <%= simple_form_for(@list) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit %>
-  <% end %>
+<div class="container">
+  <div class="form-row">
+    <div class="card-form">
+      <h2>Create a new list</h2>
+      <div class="form-group">
+        <%= simple_form_for(@list) do |f| %>
+          <%= f.input :name %>
+          <%= f.input :photo, as: :file %>
+          <%= f.submit "Create list", class: "btn btn-outline-dark" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

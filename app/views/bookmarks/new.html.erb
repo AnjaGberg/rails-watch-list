@@ -1,7 +1,14 @@
-<div class="form">
-  <%= simple_form_for [ @list, @bookmark ] do |f| %>
-    <%= f.input :comment %>
-    <%= f.association :movie %>
-    <%= f.submit %>
-  <% end %>
+<div class="container">
+  <div class="form-row">
+    <div class="card-form">
+      <h2>Add a movie to your <%= @list.name %>-list </h2>
+      <div class="form-group">
+        <%= simple_form_for [ @list, @bookmark ] do |f| %>
+          <%= f.association :movie %>
+          <%= f.input :comment %>
+          <%= f.submit "Add movie", class: "btn btn-outline-dark"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

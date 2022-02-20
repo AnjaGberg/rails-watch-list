@@ -1,17 +1,34 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @list.photo.key %>');">
+<% if @list.photo.attached? %>
+  <% url = cl_image_path @list.photo.key, class: "img-banner" %>
+<% else %>
+  <% url = 'https://source.unsplash.com/random/?cinema' %>
+<% end %>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= url %>');">
   <div class="container">
     <h1><%= @list.name %></h1>
     <%= link_to 'Add movies', new_list_bookmark_path(@list), class: "btn btn-outline-light" %>
   </div>
 </div>
-<div class="list-container">
-  <h1><%= @list.name %></h1>
-  <%= link_to 'Add movies', new_list_bookmark_path(@list) %>
-  <ul>
+<div class="container">
+  <div class="row">
     <% @list.bookmarks.each do |bookmark| %>
-    <li> <%= bookmark.movie.title %>
-      <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }  %>
-    </li>
+      <div class="col-9  mb-3">
+        <div class="card-product">
+          <img src=  <%= bookmark.movie.poster_url %> >
+          <div class="card-product-infos">
+            <h2><%= bookmark.movie.title %></h2>
+            <p><%= bookmark.movie.overview.truncate(250, separator: ' ', omission: '... (continued)') %></p>
+            <p class="comment"><%= bookmark.comment %></p>
+            <div class="delete" data-toggle="tooltip" data-placement="top" title="Remove from list">
+              <%= link_to '<svg xmlns="http://www.w3.org/2000/svg" width="auto" height="auto" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                          </svg>'.html_safe, bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }  %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 </div>

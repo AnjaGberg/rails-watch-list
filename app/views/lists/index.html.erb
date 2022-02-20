@@ -1,18 +1,18 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);">
+<div class="banner banner-hp" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);">
   <div class="container">
     <h1>These are all your movie lists!</h1>
     <p>Make watch-lists easy</p>
     <%= link_to 'Make new List', new_list_path, class: "btn btn-outline-light" %>
   </div>
 </div>
-<div class="lists-container">
-  <div class="row">
+<div class="container">
+  <div class="row ml-1 justify-content-start">
     <% @lists.each do |list|  %>
-      <div class="col-3">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3">
         <% if list.photo.attached? %>
           <% url = cl_image_path list.photo.key, height: 300, crop: :fill %>
         <% else %>
-          <% url = 'https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png' %>
+          <% url = 'https://source.unsplash.com/random/?cinema' %>
         <% end %>
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),  url('<%= url %>')">
           <%= link_to list.name, list_path(list) %>
